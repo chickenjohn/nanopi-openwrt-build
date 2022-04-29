@@ -248,7 +248,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./release/*
-          asset_name: release
+          asset_name: release/*
           file_glob: true
           overwrite: true
 
@@ -324,6 +324,6 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./release/*
-          asset_name: release
+          asset_name: release/*
           file_glob: true
           overwrite: true
