@@ -193,6 +193,7 @@ jobs:
           TUNNEL_HOST: ${{secrets.TUNNEL_HOST}}
 
   generate_slim_firmware:
+    permissions: write-all
     needs: build_packages
     name: Generate ${{ github.event.client_payload.device || github.event.inputs.device }} slim firmware
     runs-on: ubuntu-18.04
@@ -231,9 +232,8 @@ jobs:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
+          token: ${{ secrets.ACTION }}
           tag_name: ${{ github.ref }}
           release_name: ${{env.strDate}} 自动发布slim
           body: ${{env.strDate}} 自动发布slim
@@ -243,16 +243,16 @@ jobs:
       - name: Upload release asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
+          token: ${{ secrets.ACTION }}
           asset_path: ./release/*
           asset_name: release/*
           file_glob: true
           overwrite: true
 
   generate_firmware:
+    permissions: write-all
     needs: build_packages
     if: always()
     name: Generate ${{ github.event.client_payload.device || github.event.inputs.device }} firmware
@@ -307,10 +307,9 @@ jobs:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           tag_name: ${{ github.ref }}
+          token: ${{ secrets.ACTION }}
           release_name: ${{env.strDate}} 自动发布
           body: ${{env.strDate}} 自动发布
           draft: false
@@ -319,10 +318,9 @@ jobs:
       - name: Upload release asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
+          token: ${{ secrets.ACTION }}
           asset_path: ./release/*
           asset_name: release/*
           file_glob: true
