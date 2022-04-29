@@ -233,7 +233,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         with:
-          token: ${{ secrets.ACTION }}
+          super_secret: ${{ secrets.ACTION }}
           tag_name: ${{ github.ref }}
           release_name: ${{env.strDate}} 自动发布slim
           body: ${{env.strDate}} 自动发布slim
@@ -245,7 +245,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          token: ${{ secrets.ACTION }}
+          super_secret: ${{ secrets.ACTION }}
           asset_path: ./release/*
           asset_name: release/*
           file_glob: true
@@ -309,7 +309,7 @@ jobs:
         uses: actions/create-release@v1
         with:
           tag_name: ${{ github.ref }}
-          token: ${{ secrets.ACTION }}
+          super_secret: ${{ secrets.ACTION }}
           release_name: ${{env.strDate}} 自动发布
           body: ${{env.strDate}} 自动发布
           draft: false
@@ -320,7 +320,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          token: ${{ secrets.ACTION }}
+          super_secret: ${{ secrets.ACTION }}
           asset_path: ./release/*
           asset_name: release/*
           file_glob: true
