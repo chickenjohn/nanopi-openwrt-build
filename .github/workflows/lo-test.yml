@@ -299,7 +299,7 @@ jobs:
         with:
           repo_token: ${{ secrets.ACTION }}
           file: ./release/*
-          tag: ${{env.strDate}} 自动发布 ${{ steps.current-time.outputs.time }}
+          tag: ${{env.strDate}} 自动发布
           file_glob: true
           overwrite: true
           release_name: ${{env.strDate}} 自动发布 ${{ steps.current-time.outputs.time }}
