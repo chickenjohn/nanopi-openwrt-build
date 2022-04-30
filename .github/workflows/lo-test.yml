@@ -290,16 +290,12 @@ jobs:
           cd $GITHUB_WORKSPACE/release/ && md5sum $DEVICE-with-docker.img.gz > $DEVICE-with-docker.img.gz.md5
           gzip -dc $DEVICE-with-docker.img.gz | md5sum | sed "s/-/$DEVICE-with-docker.img/" > $DEVICE-with-docker.img.md5
 
-      - name: Get current time
-        uses: gerred/actions/current-time@master
-        id: current-time
-
       - name: Upload release asset
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.ACTION }}
           file: ./release/*
-          tag: ${{env.strDate}} 自动发布
+          tag: auto_release
           file_glob: true
           overwrite: true
           release_name: ${{env.strDate}} 自动发布
