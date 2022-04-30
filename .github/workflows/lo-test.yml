@@ -302,4 +302,4 @@ jobs:
           tag: ${{env.strDate}} 自动发布
           file_glob: true
           overwrite: true
-          release_name: ${{env.strDate}} 自动发布 ${{ steps.current-time.outputs.time }}
+          release_name: ${{env.strDate}} 自动发布
